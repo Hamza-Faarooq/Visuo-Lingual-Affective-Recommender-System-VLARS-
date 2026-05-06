@@ -1,0 +1,9 @@
+streamlit
+pandas
+numpy
+opencv-python-headless
+deepface
+transformers
+sentence-transformers
+faiss-cpu
+torch
