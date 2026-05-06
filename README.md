@@ -1,39 +1,46 @@
+---
+title: VLARS Recommender
+emoji: 🎬
+colorFrom: blue
+colorTo: green
+sdk: streamlit
+app_file: app.py
+pinned: false
+python_version: "3.10"
+---
+
 # 🎬 Synesthesia: Visuo-Lingual Affective Recommender System (VLARS)
 
-![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)
-![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?logo=pytorch&logoColor=white)
-![Transformers](https://img.shields.io/badge/HuggingFace-Transformers-F9AB00?logo=huggingface)
-![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?logo=streamlit&logoColor=white)
+[![Live Demo](https://img.shields.io/badge/Demo-HuggingFace-yellow?style=for-the-badge&logo=huggingface)](https://tm-vettel-vlars-recommender.hf.space/)
+![Python](https://img.shields.io/badge/Python-3.10-blue.svg?style=for-the-badge)
+![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)
 
-**Live Web App:** [Insert your Streamlit Cloud Link Here]
+**🚀 Live Web App:** [https://tm-vettel-vlars-recommender.hf.space/](https://tm-vettel-vlars-recommender.hf.space/)
 
 ## 📌 Project Overview
-Basic recommendation systems rely on collaborative filtering, which suffers from the "cold-start" problem and ignores real-time user context. **VLARS** is a multimodal AI system that solves this by acting as a contextual engine. It extracts physiological state via computer vision (facial emotion) and psychological state via NLP (text sentiment), fusing them to recommend content using a high-dimensional Semantic Vector Search.
+Traditional recommendation systems often suffer from the "cold-start" problem and fail to capture the immediate emotional state of a user. **VLARS** is a multimodal AI engine designed to solve this by fusing **physiological state** (facial expressions) and **psychological state** (textual sentiment) into a single affective query for high-fidelity movie recommendations.
 
-*(Insert a screenshot of your web app UI here: `![App UI](assets/ui_screenshot.png)`)*
-
-## 🧠 Core Architecture & Features
+## 🧠 Technical Architecture
 
 ### 1. Multimodal Affective Inference
-* **Visual Modality:** Utilizes a pre-trained **ResNet/VGG backend via DeepFace** to extract a probability distribution of 7 core micro-expressions from facial data.
-* **Textual Modality:** Implements a knowledge-distilled Transformer (**DistilRoBERTa**) to map unstructured text into an aligned latent emotional space.
+*   **Visual Modality:** Uses a **ResNet/VGG** backbone (via DeepFace) to perform real-time facial emotion detection across 7 core micro-expressions.
+*   **Textual Modality:** Implements a knowledge-distilled Transformer (**DistilRoBERTa**) to extract nuanced sentiment from unstructured user text.
 
-### 2. Late-Fusion Decision Engine
-To resolve contradictions between modalities (e.g., sarcasm or stoicism), the system implements a dynamic Late-Fusion engine utilizing an $L_1$ normalized weighted heuristic. The text modality is given a higher tunable weight ($\alpha = 0.65$) to act as a contextual safeguard against visual misclassification.
-
-### 3. Semantic Retrieval (RAG Architecture)
-Instead of rigid genre-filtering, the system leverages a **MiniLM Sentence Transformer** to embed 5,000+ movie plot summaries into 384-dimensional dense vectors. Recommendations are retrieved in $O(\log N)$ time using **FAISS (Facebook AI Similarity Search)** via $L_2$ Euclidean distance.
+### 2. Late-Fusion & Semantic Retrieval
+*   **Fusion Engine:** Implements an $L_1$ normalized weighted heuristic to resolve modality contradictions (e.g., sarcasm), with a tunable $\alpha$ weight for textual priority.
+*   **Vector Search:** Utilizes **FAISS (Facebook AI Similarity Search)** to query a 384-dimensional dense vector space of 5,000+ movies in $O(\log N)$ time.
+*   **Embeddings:** Powered by a **MiniLM-L6 Sentence Transformer** for deep semantic understanding of movie plots.
 
 ## 📊 Quantitative Evaluation (Ablation Study)
-To validate the Multimodal Late-Fusion architecture, an ablation study was conducted against single-modality baselines using complex emotional edge-cases (e.g., "Tears of Joy", Sarcasm).
+The system was validated through an ablation study on complex emotional edge cases (e.g., "Tears of Joy", Stoicism). Results proved that the **Late-Fusion architecture** reduces semantic retrieval error ($L_2$ distance) by up to **1.98%** compared to unimodal baselines.
 
-*(Insert your terminal screenshot here: `![Ablation Study](assets/ablation_results.png)`)*
-
-**Results:** The Late-Fusion architecture successfully acts as a fault-tolerant layer, strictly minimizing $L_2$ semantic error distance and improving contextual retrieval accuracy by up to **1.98%** compared to standard Vision-Only baselines.
+## 🛠️ Tech Stack
+*   **Frameworks:** Streamlit, PyTorch, TensorFlow
+*   **Vector DB:** FAISS
+*   **Models:** DeepFace, Hugging Face Transformers (Sentence-Transformers)
+*   **Environment:** Python 3.10, Linux (Debian)
 
 ## 🚀 How to Run Locally
-
-1. Clone the repository:
-   ```bash
-   git clone [https://github.com/YourUsername/VLARS-Movie-Recommender.git](https://github.com/YourUsername/VLARS-Movie-Recommender.git)
-   cd VLARS-Movie-Recommender
+1. Clone the repo: `git clone https://github.com/YourUsername/VLARS-Movie-Recommender.git`
+2. Install dependencies: `pip install -r requirements.txt`
+3. Launch app: `streamlit run app.py`
