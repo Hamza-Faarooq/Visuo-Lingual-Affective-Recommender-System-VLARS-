@@ -7,7 +7,7 @@ python_version: "3.10"
 ---
 
 # 🎬 Synesthesia: Visuo-Lingual Affective Recommender System (VLARS)
-
+ 
 [![Live Demo](https://img.shields.io/badge/Demo-HuggingFace-yellow?style=for-the-badge&logo=huggingface)](https://tm-vettel-vlars-recommender.hf.space/)
 ![Python](https://img.shields.io/badge/Python-3.10-blue.svg?style=for-the-badge)
 ![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)
